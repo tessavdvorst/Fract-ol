@@ -6,7 +6,7 @@
 #    By: Tessa <Tessa@student.codam.nl>               +#+                      #
 #                                                    +#+                       #
 #    Created: 2022/01/11 14:02:46 by Tessa         #+#    #+#                  #
-#    Updated: 2022/01/13 11:54:15 by Tessa         ########   odam.nl          #
+#    Updated: 2022/01/18 10:17:50 by tvan-der      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,8 @@ RED = 		\033[38;5;1m
 NAME =      fractol
 
 SRCS =      ./src/openwin.c \
-			./src/draw_shapes.c
+			./src/draw_shapes.c \
+			./src/color.c
 
 OFILES =    $(SRCS:.c=.o)
 
@@ -35,7 +36,7 @@ $(NAME):	$(OFILES) $(INCLUDES)
 			make -C libft/
 			cp libft/libft.a .
 			make -C mlx/
-			cp mlx/libmlx.dylib .
+			cp mlx/libmlx.a .
 			$(CC) -Lmlx -lmlx -Llibft -lft -o $(NAME) $(OFILES) $(CFLAGS) $(MLXFLAGS)
 			@echo "$(GREEN)Successfully compiled!$(NORMAL)"
 
@@ -52,8 +53,8 @@ clean:
 
 fclean:		clean
 			@echo "$(RED)Removing libraries...$(NORMAL)"
-			$(RM) mlx/libmlx.dylib
-			$(RM) libmlx.dylib
+			$(RM) mlx/libmlx.a
+			$(RM) libmlx.a
 			$(RM) libft/libft.a
 			$(RM) libft.a
 			$(RM) $(NAME)
