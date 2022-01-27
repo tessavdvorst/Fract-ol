@@ -6,7 +6,7 @@
 /*   By: tvan-der <tvan-der@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/01/18 10:17:28 by tvan-der      #+#    #+#                 */
-/*   Updated: 2022/01/18 15:34:02 by tvan-der      ########   odam.nl         */
+/*   Updated: 2022/01/27 12:13:58 by tvan-der      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ int  add_shade(double distance, int color)
     g = get_g(color);
     b = get_b(color);
     //printf("the color: %X\n red values: %X (%d), green values: %X (%d), blue values: %X (%d)\n", color, r, r, g, g, b, b);
-
+    
     //add shade and update separate color values
     r = r - floor((255 * distance));
     if (r > 255)

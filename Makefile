@@ -6,7 +6,7 @@
 #    By: Tessa <Tessa@student.codam.nl>               +#+                      #
 #                                                    +#+                       #
 #    Created: 2022/01/11 14:02:46 by Tessa         #+#    #+#                  #
-#    Updated: 2022/01/18 10:17:50 by tvan-der      ########   odam.nl          #
+#    Updated: 2022/01/27 15:09:58 by tvan-der      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,9 +16,9 @@ RED = 		\033[38;5;1m
 
 NAME =      fractol
 
-SRCS =      ./src/openwin.c \
-			./src/draw_shapes.c \
-			./src/color.c
+SRCS =      ./src/mandelbrot.c \
+			./src/color.c \
+			./src/openwin.c
 
 OFILES =    $(SRCS:.c=.o)
 
@@ -27,7 +27,7 @@ INCLUDES =  ./libft \
 
 CC = 		gcc
 RM = 		rm -f
-CFLAGS = 	-Wall -Wextra -Werror
+CFLAGS = 	-Wall -Wextra -Werror -fsanitize=address -g
 MLXFLAGS = 	-framework OpenGl -framework AppKit
 
 all:        $(NAME)
