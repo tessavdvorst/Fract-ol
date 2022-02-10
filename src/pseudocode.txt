@@ -1,0 +1,19 @@
+--------------
+| PSEUDOCODE |
+--------------
+
+1. Compile the program
+
+
+2. Run the executable (./fractol) + parameter (name)
+-------------- main() ------------------------
+3. Check if there's a parameter
+    - if argc == 0 -> return error message "Insert parameter"
+    - if argc == 1 -> next step
+4. Evaluate parameter 
+    - check if the given parameter is equal to "mandelbrot" (strcmp)
+        -> if not return 0
+        -> if so return 1
+5. Open window (window_init)
+6. Draw fractal (make_fractal)
+    - if fractol->name == 'mandelbrot' start drawbrot()

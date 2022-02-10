@@ -19,8 +19,8 @@ t_complex square_complex(t_complex x)
 {
     t_complex z;
 
-    z.re = x.re * x.re - x.im * x.im;
-    z.im = x.re * x.im + x.re * x.im;
+    z.re = pow(x.re, 2) - pow(x.im, 2);
+    z.im = 2 * x.re * x.im;
 
     return (z);
 }
@@ -43,7 +43,7 @@ int mandelbrot(t_complex z, t_complex complex)
     int count;
 
     count = 0;
-    while ((z.re * z.re + z.im * z.im) < 4 && (count < 200))
+    while ((z.re * z.re + z.im * z.im) < 4 && (count < MAX_ITERATIONS))
     {
         z = square_complex(z);
         z = add_complex(z, complex);
@@ -52,39 +52,51 @@ int mandelbrot(t_complex z, t_complex complex)
     return (count);
 }
 
-void plotCplane(t_data img)
+void draw_mandelbrot(t_fractal *fractal)
 {
     int x;
     int y;
-    //int count;
     t_complex z;
     t_complex complex;
-    int r, g, b;
-    //int color;
+    int color;
+    //int r, g, b;
     int     iter;
-    //int     hue, saturation, value;
 
     y = 0;
-    while(y < 750)
+    while(y < HEIGTH)
     {
         x = 0;
-        while(x < 1000)
+        while(x < WIDTH)
         {
-            complex.re = x * (3.0/1000) - 2;
-            complex.im = y * (2.0/750) - 1;
-            z.re = 0;
-            z.im = 0;
+            complex.re = x * (((MAX_X - MIN_X)/WIDTH) * fractal->zoom) + fractal->offset_x * fractal->zoom;
+            complex.im = y * (((MAX_Y - MIN_Y)/HEIGTH) * fractal->zoom) + fractal->offset_y * fractal->zoom;
+            z.re = complex.re;
+            z.im = complex.im;
             iter = mandelbrot(z, complex);
-            if (iter != 200)
-            {
-                r = 0 + floor(iter * 255 / 100);
-                g = 0 + floor(iter * 190 / 100);
-                b = 0 + floor(iter * 180 / 100);
-                my_mlx_pixel_put(&img, x, y, create_rgb(r,g,b));
-                 // color pixels that do not belong to the mandelbrot set
-            }
+            color = 255 - (int)(iter * 255 / MAX_ITERATIONS);
+            my_mlx_pixel_put(fractal, x, y, create_rgb(color, color, color));
+            // if (iter != 100)
+            // {
+            //     r = 255 - floor(iter * 150 / 10);
+            //     g = 255 - floor(iter * 200 / 20);
+            //     b = 255 - floor(iter * 150 / 10);
+            //     my_mlx_pixel_put(fractal, x, y, create_rgb(r,g,b));
+            //      // color pixels that do not belong to the mandelbrot set
+            // }
             x++;
         }
         y++;
     }
+}
+
+void mandelbrot_init(t_fractal *fractal)
+{
+    fractal->min_x = -2.0;
+    fractal->max_x = 2.0;
+    fractal->min_y = -1.5;
+    fractal->max_y = 1.5;
+    fractal->zoom = 1;
+    fractal->offset_x = -2.5;
+    fractal->offset_y = -1.5;
+    draw_mandelbrot(fractal);
 }

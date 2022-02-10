@@ -6,7 +6,7 @@
 /*   By: Tessa <Tessa@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/01/12 09:26:01 by Tessa         #+#    #+#                 */
-/*   Updated: 2022/01/27 15:18:27 by tvan-der      ########   odam.nl         */
+/*   Updated: 2022/02/10 15:28:54 by tvan-der      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,39 +19,68 @@
 # include "libft/libft.h"
 # include <math.h>
 
+# define WIDTH 1000
+# define HEIGTH 750
+# define MIN_X -2.0
+# define MAX_X 2.0
+# define MIN_Y -1.5
+# define MAX_Y 1.5
+# define OFFSET_X -2.0
+# define OFFSET_Y -1.5
+//# define ZOOM 1
+# define MAX_ITERATIONS 80
 
-typedef struct	s_vars {
+# define KEY_UP 126
+# define KEY_DOWN 125
+# define ESC 53
+
+typedef struct	s_fractal {
 	void	*mlx;
 	void	*win;
-}				t_vars;
-
-typedef struct	s_data {
 	void	*img;
 	char	*addr;
+	char	*name;
 	int		bits_per_pixel;
 	int		line_length;
 	int		endian;
-}				t_data;
+	double	zoom;
+	double	min_x;
+	double	max_x;
+	double	min_y;
+	double	max_y;
+	double	offset_x;
+	double	offset_y;
+}				t_fractal;
 
 typedef struct	s_complex {
 	double	re;
 	double	im;
 }				t_complex;
 
-void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
-int closed(int keycode, t_vars *vars);
-//void	draw_blank_space(t_data img, int sx, int sy);
-//void	draw_pink_square_outline(t_data img, int sx, int sy);
-//void    bres_draw_blue_circle(t_data img, int xc, int yc, int r);
-//void	draw_rainbow_square(t_data img);
-//void	draw_line(t_data img, int sx, int sy, int length);
-int  	add_shade(double distance, int color);
-void	draw_shade(t_data img);
+// USE MY OWN PRINTF??
+
+void	my_mlx_pixel_put(t_fractal *fractal, int x, int y, int color);
+int 	key_hook(int key_hook, t_fractal *fractal);
+int 	close_window(int keycode, t_fractal *fractal);
+int 	read_input(t_fractal *fractal, char *str);
+void 	make_fractal(t_fractal *fractal);
+void 	window_init(t_fractal *fractal);
+void 	mandelbrot_init(t_fractal *fractal);
+void 	julia_init(t_fractal *fractal);
+//void	draw_blank_space(t_fractal img, int sx, int sy);
+//void	draw_pink_square_outline(t_fractal img, int sx, int sy);
+//void    bres_draw_blue_circle(t_fractal img, int xc, int yc, int r);
+//void	draw_rainbow_square(t_fractal img);
+//void	draw_line(t_fractal img, int sx, int sy, int length);
+//int  	add_shade(double distance, int color);
+//void	draw_shade(t_fractal img);
 int	create_rgb(int r, int g, int b);
-void plotCplane(t_data img);
+void draw_mandelbrot(t_fractal *fractal);
 int mandelbrot(t_complex z, t_complex complex);
+void draw_julia(t_fractal *fractal);//, t_fractal fractal);
+int julia(t_complex z, t_complex complex);
 t_complex add_complex(t_complex x, t_complex y);
 t_complex square_complex(t_complex x);
-//int		gradient(t_data, int startcol, int endcol);
+//int		gradient(t_fractal, int startcol, int endcol);
 
 #endif

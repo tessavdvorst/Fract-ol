@@ -6,7 +6,7 @@
 #    By: Tessa <Tessa@student.codam.nl>               +#+                      #
 #                                                    +#+                       #
 #    Created: 2022/01/11 14:02:46 by Tessa         #+#    #+#                  #
-#    Updated: 2022/01/27 15:09:58 by tvan-der      ########   odam.nl          #
+#    Updated: 2022/02/10 14:41:13 by tvan-der      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,9 +16,13 @@ RED = 		\033[38;5;1m
 
 NAME =      fractol
 
-SRCS =      ./src/mandelbrot.c \
-			./src/color.c \
-			./src/openwin.c
+SRCS =      ./src/color.c \
+			./src/window.c \
+			./src/mandelbrot.c \
+			./src/julia.c \
+			./src/read_input.c \
+			./src/hook.c \
+			./src/main.c
 
 OFILES =    $(SRCS:.c=.o)
 

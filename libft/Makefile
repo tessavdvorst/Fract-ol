@@ -7,6 +7,7 @@ NAME	=	libft.a
 SRCS	=	ft_strlcpy.c	$\
 			ft_isalnum.c	$\
 			ft_strlen.c		$\
+			ft_strcmp.c		$\
 			ft_strncmp.c	$\
 			ft_isalpha.c	$\
 			ft_isascii.c	$\
