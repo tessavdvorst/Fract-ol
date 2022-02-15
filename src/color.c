@@ -6,7 +6,7 @@
 /*   By: tvan-der <tvan-der@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/01/18 10:17:28 by tvan-der      #+#    #+#                 */
-/*   Updated: 2022/01/27 12:13:58 by tvan-der      ########   odam.nl         */
+/*   Updated: 2022/02/15 15:24:23 by tvan-der      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,68 @@ int	get_b(int rgb)
 // 1 will make the color completely dark. 
 // 0.5 will dim it halfway
 // 0.25 a quarter way.
+
+// int	color_green(int n)
+// {
+// 	if (n < 5)
+// 		return (0x00DFEAE2);
+// 	else if (n < 10)
+// 		return (0x00B4D6C1);
+// 	else if (n < 15)
+// 		return (0x008DC3A7);
+// 	else if (n < 20)
+// 		return (0x006BAF92);
+// 	else if (n < 25)
+// 		return (0x004E9C81);
+// 	else if (n < 30)
+// 		return (0x00358873);
+// 	else if (n < 35)
+// 		return (0x00207567);
+// 	else if (n < 40)
+// 		return (0x00011FFD);
+// 	else
+// 		return (0x00000000);
+// } 
+
+void	make_black_window(t_fractal *fractal)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	while (i < WIDTH)
+	{
+		j = 0;
+		while (j < HEIGTH)
+		{
+			my_mlx_pixel_put(fractal, i, j, 0x00000000);
+			j++;
+		}
+		i++;
+	}
+}
+
+int	color_neon(int n)
+{
+	if (n < 4)
+		return (0x0075D5FD);
+	else if (n < 8)
+		return (0x00B76CFD);
+	else if (n < 12)
+		return (0x00FF2281);
+	else if (n < 16)
+		return (0x00011FFD);
+	else if (n < 20)
+		return (0x0075D5FD);
+	else if (n < 24)
+		return (0x00B76CFD);
+	else if (n < 28)
+		return (0x00FF2281);
+	else if (n < 32)
+		return (0x00011FFD);
+	else
+		return (0x00000000);
+} 
 
 int  add_shade(double distance, int color)
 {

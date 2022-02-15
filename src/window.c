@@ -6,7 +6,7 @@
 /*   By: Tessa <Tessa@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/01/11 11:13:31 by Tessa         #+#    #+#                 */
-/*   Updated: 2022/02/10 15:20:04 by tvan-der      ########   odam.nl         */
+/*   Updated: 2022/02/15 15:23:58 by tvan-der      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ void window_init(t_fractal *fractal)
 
 void make_fractal(t_fractal *fractal)
 {
+	make_black_window(fractal);
 	mlx_clear_window(fractal->mlx, fractal->win);
 	if (ft_strcmp(fractal->name, "m") == 0)
 		mandelbrot_init(fractal);

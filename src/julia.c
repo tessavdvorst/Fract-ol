@@ -6,7 +6,7 @@
 /*   By: tvan-der <tvan-der@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/02/02 15:15:01 by tvan-der      #+#    #+#                 */
-/*   Updated: 2022/02/10 15:19:53 by tvan-der      ########   odam.nl         */
+/*   Updated: 2022/02/15 11:52:57 by tvan-der      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,11 +44,11 @@ void draw_julia(t_fractal *fractal)
         x = 0;
         while(x < WIDTH)
         {
-            z.re = x * (((MAX_X - MIN_X)/WIDTH) * fractal->zoom) + fractal->offset_x * fractal->zoom;// * img.zoom;
-            z.im = y * (((MAX_Y - MIN_Y)/HEIGTH) * fractal->zoom) + fractal->offset_y * fractal->zoom;// * img.zoom;
+            z.re = x * (((fractal->max_x - fractal->min_x)/WIDTH) * fractal->zoom) + fractal->offset_x * fractal->zoom;// * img.zoom;
+            z.im = y * (((fractal->max_y - fractal->min_y)/HEIGTH) * fractal->zoom) + fractal->offset_y * fractal->zoom;// * img.zoom;
             //printf("%f\n", fractal.img.zoom);
-            complex.re = -0.8;//0.285; //-0.4;
-            complex.im = 0.156;//0.01;//0.6;
+            complex.re = -0.4;//-0.8;//0.285; //
+            complex.im = 0.6;//0.156;//0.01;//
             iter = julia(z, complex);
             r = 255 * iter / MAX_ITERATIONS;
             g = 100;

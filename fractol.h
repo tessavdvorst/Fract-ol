@@ -6,7 +6,7 @@
 /*   By: Tessa <Tessa@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/01/12 09:26:01 by Tessa         #+#    #+#                 */
-/*   Updated: 2022/02/10 15:28:54 by tvan-der      ########   odam.nl         */
+/*   Updated: 2022/02/15 15:23:54 by tvan-der      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,14 +21,14 @@
 
 # define WIDTH 1000
 # define HEIGTH 750
-# define MIN_X -2.0
-# define MAX_X 2.0
-# define MIN_Y -1.5
-# define MAX_Y 1.5
-# define OFFSET_X -2.0
-# define OFFSET_Y -1.5
+// # define MIN_X -2.0
+// # define MAX_X 2.0
+// # define MIN_Y -1.5
+// # define MAX_Y 1.5
+// # define OFFSET_X -2.0
+// # define OFFSET_Y -1.5
 //# define ZOOM 1
-# define MAX_ITERATIONS 80
+# define MAX_ITERATIONS 60
 
 # define KEY_UP 126
 # define KEY_DOWN 125
@@ -60,6 +60,9 @@ typedef struct	s_complex {
 // USE MY OWN PRINTF??
 
 void	my_mlx_pixel_put(t_fractal *fractal, int x, int y, int color);
+int	color_neon(int n);
+int	color_green(int n);
+void	make_black_window(t_fractal *fractal);
 int 	key_hook(int key_hook, t_fractal *fractal);
 int 	close_window(int keycode, t_fractal *fractal);
 int 	read_input(t_fractal *fractal, char *str);

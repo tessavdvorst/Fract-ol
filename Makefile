@@ -6,7 +6,7 @@
 #    By: Tessa <Tessa@student.codam.nl>               +#+                      #
 #                                                    +#+                       #
 #    Created: 2022/01/11 14:02:46 by Tessa         #+#    #+#                  #
-#    Updated: 2022/02/10 14:41:13 by tvan-der      ########   odam.nl          #
+#    Updated: 2022/02/15 14:19:53 by tvan-der      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,7 +32,7 @@ INCLUDES =  ./libft \
 CC = 		gcc
 RM = 		rm -f
 CFLAGS = 	-Wall -Wextra -Werror -fsanitize=address -g
-MLXFLAGS = 	-framework OpenGl -framework AppKit
+MLXFLAGS = 	-framework OpenGl -framework AppKit -mtune=native -march=native -Ofast
 
 all:        $(NAME)
 
