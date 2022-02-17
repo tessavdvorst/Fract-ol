@@ -6,7 +6,7 @@
 #    By: Tessa <Tessa@student.codam.nl>               +#+                      #
 #                                                    +#+                       #
 #    Created: 2022/01/11 14:02:46 by Tessa         #+#    #+#                  #
-#    Updated: 2022/02/15 14:19:53 by tvan-der      ########   odam.nl          #
+#    Updated: 2022/02/16 16:20:34 by tvan-der      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,7 +21,9 @@ SRCS =      ./src/color.c \
 			./src/mandelbrot.c \
 			./src/julia.c \
 			./src/read_input.c \
-			./src/hook.c \
+			./src/key_hook.c \
+			./src/mouse_hook.c \
+			./src/utils.c \
 			./src/main.c
 
 OFILES =    $(SRCS:.c=.o)

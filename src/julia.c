@@ -6,7 +6,7 @@
 /*   By: tvan-der <tvan-der@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/02/02 15:15:01 by tvan-der      #+#    #+#                 */
-/*   Updated: 2022/02/15 11:52:57 by tvan-der      ########   odam.nl         */
+/*   Updated: 2022/02/17 12:52:54 by tvan-der      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ void draw_julia(t_fractal *fractal)
     int y;
     t_complex z;
     t_complex complex;
-    int r, g, b;
+    //int r, g, b;
     int     iter;
 
     y = 0;
@@ -50,13 +50,13 @@ void draw_julia(t_fractal *fractal)
             complex.re = -0.4;//-0.8;//0.285; //
             complex.im = 0.6;//0.156;//0.01;//
             iter = julia(z, complex);
-            r = 255 * iter / MAX_ITERATIONS;
-            g = 100;
-            if (iter < MAX_ITERATIONS)
-                b = 250 - iter / 10;
-            else
-                b = 0 + iter / 10;
-            my_mlx_pixel_put(fractal, x, y, create_rgb(r,g,b));
+            // r = 255 * iter / MAX_ITERATIONS;
+            // g = 100;
+            // if (iter < MAX_ITERATIONS)
+            //     b = 250 - iter / 10;
+            // else
+            //     b = 0 + iter / 10;
+            my_mlx_pixel_put(fractal, x, y, color_pastel(iter));//create_rgb(r,g,b));
             // if (iter != MAX_ITERATIONS)
             // {
             //     r = 255 * iter / MAX_ITERATIONS;
@@ -80,6 +80,5 @@ void julia_init(t_fractal *fractal)
     fractal->max_y = 1.5;
     fractal->offset_x = -2.0;
     fractal->offset_y = -1.5;
-    draw_julia(fractal);
 }
 

@@ -6,7 +6,7 @@
 /*   By: Tessa <Tessa@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/01/13 11:50:16 by Tessa         #+#    #+#                 */
-/*   Updated: 2022/01/27 12:16:45 by tvan-der      ########   odam.nl         */
+/*   Updated: 2022/02/16 13:03:51 by tvan-der      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -236,3 +236,12 @@ void	draw_shade(t_data img)
 	
 //     //printf("the current position: %d, %d\n", sx, sy);
 // }
+
+//void	draw_blank_space(t_fractal img, int sx, int sy);
+//void	draw_pink_square_outline(t_fractal img, int sx, int sy);
+//void    bres_draw_blue_circle(t_fractal img, int xc, int yc, int r);
+//void	draw_rainbow_square(t_fractal img);
+//void	draw_line(t_fractal img, int sx, int sy, int length);
+//int  	add_shade(double distance, int color);
+//void	draw_shade(t_fractal img);
+//int		gradient(t_fractal, int startcol, int endcol);

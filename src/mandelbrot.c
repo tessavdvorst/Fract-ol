@@ -12,32 +12,6 @@
 
 #include "../fractol.h"
 
-// this function takes a complex number, squares it and returns the result
-// the real number = (realnumber^2) - (imaginarynumber^2)
-// the imaginary number = realnumber * imaginarynumber + realnumber * imaginarynumber
-t_complex square_complex(t_complex x)
-{
-    t_complex z;
-
-    z.re = pow(x.re, 2) - pow(x.im, 2);
-    z.im = 2 * x.re * x.im;
-
-    return (z);
-}
-
-// this function takes two complex numbers, adds them to each other and returns the result
-// the real number = realnumber1 + realnumber2
-// the imaginary number = imaginarynumber1 + imaginarynumber2
-t_complex add_complex(t_complex x, t_complex y)
-{
-    t_complex z;
-
-    z.re = x.re + y.re;
-    z.im = x.im + y.im;
-
-    return(z);
-}
-
 int mandelbrot(t_complex z, t_complex complex)
 {
     int n;
@@ -83,6 +57,8 @@ void draw_mandelbrot(t_fractal *fractal)
                 my_mlx_pixel_put(fractal, x, y, color_neon(iter));//create_rgb(r,g,b));
                  // color pixels that do not belong to the mandelbrot set
             }
+            else
+                my_mlx_pixel_put(fractal, x, y, BLACK);
             x++;
         }
         y++;
@@ -97,5 +73,4 @@ void mandelbrot_init(t_fractal *fractal)
     fractal->max_y = 1.5;
     fractal->offset_x = -2.5;
     fractal->offset_y = -1.5;
-    draw_mandelbrot(fractal);
 }

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   hook.c                                             :+:    :+:            */
+/*   key_hook.c                                         :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: tvan-der <tvan-der@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/02/08 14:18:27 by tvan-der      #+#    #+#                 */
-/*   Updated: 2022/02/10 13:23:21 by tvan-der      ########   odam.nl         */
+/*   Updated: 2022/02/16 16:49:43 by tvan-der      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,29 +14,37 @@
 
 int key_hook(int keycode, t_fractal *fractal)
 {
-	(void)fractal->img;
 	printf("Hello from key_code: %d!\n", keycode);
-	if (keycode == KEY_UP)
+	if (keycode == KEY_LEFT)
 	{		
-		fractal->zoom -= 0.1;
-		printf("%f\n", fractal->zoom);
+		fractal->offset_x -= 0.1;
         make_fractal(fractal);
 	}
-	else if (keycode == KEY_DOWN)
+	if (keycode == KEY_RIGHT)
 	{		
-		fractal->zoom += 0.1;
-		printf("%f\n", fractal->zoom);
+		fractal->offset_x += 0.1;
         make_fractal(fractal);
+	}
+	if (keycode == KEY_UP)
+	{		
+		fractal->offset_y -= 0.1;
+        make_fractal(fractal);
+	}
+	if (keycode == KEY_DOWN)
+	{		
+		fractal->offset_y += 0.1;
+        make_fractal(fractal);
+	}
+	if (keycode == ESC) // if esc is pressed
+	{
+		ft_close(fractal);
 	}
     return (0);
 }
 
-int close_window(int keycode, t_fractal *fractal)
+int	ft_close(t_fractal *fractal)
 {
-    if (keycode == ESC) // if esc is pressed
-	{
-		mlx_destroy_window(fractal->mlx, fractal->win);
-		exit(0);
-	}
-    return (0);    
+	mlx_destroy_window(fractal->mlx, fractal->win);
+	exit(0);
+	return (0);
 }
