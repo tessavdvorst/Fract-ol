@@ -9,6 +9,7 @@ SRCS	=	ft_strlcpy.c	$\
 			ft_strlen.c		$\
 			ft_strcmp.c		$\
 			ft_strncmp.c	$\
+			ft_ccmp.c		$\
 			ft_isalpha.c	$\
 			ft_isascii.c	$\
 			ft_isdigit.c	$\
@@ -16,6 +17,7 @@ SRCS	=	ft_strlcpy.c	$\
 			ft_tolower.c	$\
 			ft_toupper.c	$\
 			ft_atoi.c		$\
+			ft_atof.c		$\
 			ft_strchr.c		$\
 			ft_strrchr.c	$\
 			ft_memchr.c		$\

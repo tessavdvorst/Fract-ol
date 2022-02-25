@@ -6,7 +6,7 @@
 /*   By: Tessa <Tessa@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/01/12 09:26:01 by Tessa         #+#    #+#                 */
-/*   Updated: 2022/02/17 15:34:29 by tvan-der      ########   odam.nl         */
+/*   Updated: 2022/02/25 12:21:30 by tvan-der      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,33 +21,41 @@
 
 # define WIDTH 1000
 # define HEIGTH 750
-# define MAX_ITERATIONS 60
+# define MAX_ITERATIONS 200
 # define BLACK 0x00000000
+# define WHITE 0x00FFFFFF
+# define CONST_RE -0.4
+# define CONST_IM 0.6
 
 # define KEY_UP 126
 # define KEY_DOWN 125
 # define KEY_RIGHT 124
 # define KEY_LEFT 123
+# define SPACE 49
 # define ESC 53
-# define WHEEL_UP 4
-# define WHEEL_DOWN 5
+# define WHEEL_UP 5
+# define WHEEL_DOWN 4
 
 typedef struct	s_fractal {
 	void	*mlx;
 	void	*win;
 	void	*img;
 	char	*addr;
-	char	*name;
+	char	name;
+	int		color;
 	int		bits_per_pixel;
 	int		line_length;
 	int		endian;
+	int		maxint;
  	double	zoom;
-	double	min_x;
-	double	max_x;
-	double	min_y;
-	double	max_y;
-	double	offset_x;
-	double	offset_y;
+	double	min_r;
+	double	max_r;
+	double	min_i;
+	double	max_i;
+	double	offset_r;
+	double	offset_i;
+	double	julia_r;
+	double	julia_i;
 }				t_fractal;
 
 typedef struct	s_complex {
@@ -57,10 +65,11 @@ typedef struct	s_complex {
 
 // Read input
 
-int 		read_input(t_fractal *fractal, char **str, int count);
+int 		info_init(t_fractal *fractal, char **str, int argc);
 int 		read_fractal(t_fractal *fractal, char *str);
-int 		read_options(t_fractal *fractal);
-void 	print_error(void);
+int 		read_c(t_fractal *fractal, char *str, char c);
+void 		read_color(t_fractal *fractal, char *str);
+void 		print_error(void);
 
 // Open window
 
@@ -81,27 +90,31 @@ int 		mandelbrot(t_complex z, t_complex complex);
 
 void 		julia_init(t_fractal *fractal);
 void 		draw_julia(t_fractal *fractal);
-int 		julia(t_complex z, t_complex complex);
+double 		julia(t_complex z, t_complex complex);
+
+// Burning ship
+
+int ship(t_complex z, t_complex complex);
+void draw_ship(t_fractal *fractal);
+void ship_init(t_fractal *fractal);
 
 // Complex number
 
 t_complex 	add_complex(t_complex x, t_complex y);
 t_complex 	square_complex(t_complex x);
+double		absolute_complex(t_complex complex);
+t_complex 	get_abs(t_complex x);
 
 // Key & mouse hooks
 
 int 		key_hook(int key_hook, t_fractal *fractal);
 int 		mouse_hook(int mousecode, int x, int y, t_fractal *fractal);
-int		ft_close(t_fractal *fractal);
+int			ft_close(t_fractal *fractal);
 
 // Color
 
-int			color_neon(int n);
-int			color_pastel(int n);
+int 	color(t_fractal *fractal, int n);
 int			create_rgb(int r, int g, int b);
-//void		make_black_window(t_fractal *fractal);
-
-
 
 
 #endif

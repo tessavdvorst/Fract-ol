@@ -17,3 +17,15 @@
 5. Open window (window_init)
 6. Draw fractal (make_fractal)
     - if fractol->name == 'mandelbrot' start drawbrot()
+
+
+
+-----------------
+| READING INPUT |
+-----------------
+
+- init values ins struct
+- read fractol type
+- read julia re & im
+
+1. 

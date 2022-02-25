@@ -6,7 +6,7 @@
 #    By: Tessa <Tessa@student.codam.nl>               +#+                      #
 #                                                    +#+                       #
 #    Created: 2022/01/11 14:02:46 by Tessa         #+#    #+#                  #
-#    Updated: 2022/02/16 16:20:34 by tvan-der      ########   odam.nl          #
+#    Updated: 2022/02/25 12:39:41 by tvan-der      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,6 +20,7 @@ SRCS =      ./src/color.c \
 			./src/window.c \
 			./src/mandelbrot.c \
 			./src/julia.c \
+			./src/burningship.c \
 			./src/read_input.c \
 			./src/key_hook.c \
 			./src/mouse_hook.c \
