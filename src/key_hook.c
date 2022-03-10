@@ -6,48 +6,52 @@
 /*   By: tvan-der <tvan-der@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/02/08 14:18:27 by tvan-der      #+#    #+#                 */
-/*   Updated: 2022/02/25 11:46:10 by tvan-der      ########   odam.nl         */
+/*   Updated: 2022/03/10 17:13:44 by tvan-der      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../fractol.h"
+#include "../incl/fractol.h"
 
-int key_hook(int keycode, t_fractal *fractal)
+int	key_hook1(int keycode, t_fractal *fractal)
 {
-	printf("%d\n", keycode);
 	if (keycode == KEY_LEFT)
-	{		
-		fractal->offset_r -= 0.1;
-        make_fractal(fractal);
+	{
+		fractal->move_x -= 0.1;
+		draw_fractal(fractal);
 	}
-	if (keycode == KEY_RIGHT)
-	{		
-		fractal->offset_r += 0.1;
-        make_fractal(fractal);
+	else if (keycode == KEY_RIGHT)
+	{
+		fractal->move_x += 0.1;
+		draw_fractal(fractal);
 	}
-	if (keycode == KEY_UP)
-	{		
-		fractal->offset_i -= 0.1;
-        make_fractal(fractal);
+	else if (keycode == KEY_UP)
+	{
+		fractal->move_y -= 0.1;
+		draw_fractal(fractal);
 	}
-	if (keycode == KEY_DOWN)
-	{		
-		fractal->offset_i += 0.1;
-        make_fractal(fractal);
+	else if (keycode == KEY_DOWN)
+	{
+		fractal->move_y += 0.1;
+		draw_fractal(fractal);
 	}
+	else
+		key_hook2(keycode, fractal);
+	return (0);
+}
+
+int	key_hook2(int keycode, t_fractal *fractal)
+{
 	if (keycode == SPACE)
 	{
-		printf("before press %d\n", fractal->color);
 		if (fractal->color >= 0 && fractal->color < 2)
 			fractal->color += 1;
 		else
 			fractal->color = 0;
-		printf("after press %d\n", fractal->color);
-		make_fractal(fractal);
+		draw_fractal(fractal);
 	}
-	if (keycode == ESC) // if esc is pressed
+	if (keycode == ESC)
 		ft_close(fractal);
-    return (0);
+	return (0);
 }
 
 int	ft_close(t_fractal *fractal)

@@ -6,52 +6,78 @@
 /*   By: Tessa <Tessa@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/01/11 11:13:31 by Tessa         #+#    #+#                 */
-/*   Updated: 2022/02/25 12:21:20 by tvan-der      ########   odam.nl         */
+/*   Updated: 2022/03/10 17:13:30 by tvan-der      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../fractol.h"
+#include "../incl/fractol.h"
 
-void window_init(t_fractal *fractal)
+void	window_init(t_fractal *fractal)
 {
-		fractal->mlx = mlx_init();
-		fractal->win = mlx_new_window(fractal->mlx, WIDTH, HEIGTH, "Fract-ol");
-		fractal->img = mlx_new_image(fractal->mlx, WIDTH, HEIGTH);
-		fractal->addr = mlx_get_data_addr(fractal->img, &fractal->bits_per_pixel, &fractal->line_length,
-			&fractal->endian);
-		fractal->zoom = 1;
-		if (ft_ccmp(fractal->name, 'm') == 0)
-			mandelbrot_init(fractal);
-		else if (ft_ccmp(fractal->name, 'j') == 0)
-			julia_init(fractal);
-		else if (ft_ccmp(fractal->name, 's') == 0)
-			ship_init(fractal);
-		else
-			printf("Insert valid fractal\n");
-		make_fractal(fractal);
+	fractal->mlx = mlx_init();
+	fractal->win = mlx_new_window(fractal->mlx, WIDTH, HEIGTH, "Fract-ol");
+	fractal->img = mlx_new_image(fractal->mlx, WIDTH, HEIGTH);
+	fractal->addr = mlx_get_data_addr(fractal->img, &fractal->bits_per_pixel,
+			&fractal->line_length, &fractal->endian);
 }
 
-void make_fractal(t_fractal *fractal)
+void	fractal_init(t_fractal *fractal)
 {
-	mlx_clear_window(fractal->mlx, fractal->win);
-	if (ft_ccmp(fractal->name, 'm') == 0)
-		draw_mandelbrot(fractal);
-	if (ft_ccmp(fractal->name, 'j') == 0)
-		draw_julia(fractal);
+	fractal->move_x = 0;
+	fractal->move_y = 0;
+	fractal->zoom = 1;
 	if (ft_ccmp(fractal->name, 's') == 0)
-			draw_ship(fractal);
+	{
+		fractal->offset_r = -2.4;
+		fractal->offset_i = -2.0;
+	}
+	else
+	{
+		if (ft_ccmp(fractal->name, 'm') == 0)
+			fractal->offset_r = -2.5;
+		else
+			fractal->offset_r = -2.0;
+		fractal->offset_i = -1.5;
+	}
+}
+
+void	color_pixel(t_fractal *fractal, int x, int y)
+{
+	int			iter;
+	t_complex	complex;
+
+	iter = 0;
+	complex.re = ((double)x * ((4.0 / WIDTH) * fractal->zoom)
+			+ fractal->offset_r * fractal->zoom) + fractal->move_x;
+	complex.im = ((double)y * ((3.0 / HEIGTH) * fractal->zoom)
+			+ fractal->offset_i * fractal->zoom) + fractal->move_y;
+	if (ft_ccmp(fractal->name, 'm') == 0)
+		iter = mandelbrot(complex);
+	else if (ft_ccmp(fractal->name, 'j') == 0)
+		iter = julia(fractal, complex);
+	else if (ft_ccmp(fractal->name, 's') == 0)
+		iter = ship(complex);
+	if (iter != MAX_ITERATIONS)
+		my_mlx_pixel_put(fractal, x, y, color(fractal, iter));
+	else
+		my_mlx_pixel_put(fractal, x, y, BLACK);
+}
+
+void	draw_fractal(t_fractal *fractal)
+{
+	int			x;
+	int			y;
+
+	y = 0;
+	while (y < HEIGTH)
+	{
+		x = 0;
+		while (x < WIDTH)
+		{
+			color_pixel(fractal, x, y);
+			x++;
+		}
+		y++;
+	}
 	mlx_put_image_to_window(fractal->mlx, fractal->win, fractal->img, 0, 0);
 }
-	
-	
-	
-	
-	
-	//color = add_shade(0.5, color);
-	//printf("after adding shade the color will be: %X\n", color);	
-	//draw_pink_square_outline(img, 500, 375);
-	//draw_blank_space(img, 85, 225);
-	//bres_draw_blue_circle(img, 750, 175, 50);
-	//draw_rainbow_square(img);
-	//draw_shade(img);
-	//draw_line(img, 125, 350, 200);

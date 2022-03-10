@@ -6,7 +6,7 @@
 /*   By: Tessa <tvan-der@student.codam.nl>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/12/17 14:04:59 by Tessa         #+#    #+#                 */
-/*   Updated: 2022/02/24 11:31:00 by tvan-der      ########   odam.nl         */
+/*   Updated: 2022/03/08 14:12:55 by tvan-der      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,12 @@
 # include <ctype.h>
 # include <stdlib.h>
 # include <unistd.h>
+# include <stdarg.h>
+
+typedef struct s_data
+{
+	int	print_count;
+}t_data;
 
 typedef struct s_list
 {
@@ -68,5 +74,12 @@ t_list	*ft_lstlast(t_list *lst);
 void	ft_lstadd_back(t_list **lst, t_list *new);
 void	ft_lstdelone(t_list *lst, void (*del)(void *));
 void	ft_lstclear(t_list **lst, void (*del)(void *));
+void	ft_printchar(char c, t_data *data);
+void	ft_printstr(char *s, t_data *data);
+void	ft_printnbr(int n, t_data *data);
+void	ft_printhexa(unsigned long n, char *basestr, t_data *data);
+void	ft_print_unsignednbr(unsigned int n, t_data *data);
+void	ft_printptr(void *ptr, t_data *data);
+int		ft_printf(const char *s, ...);
 
 #endif

@@ -6,7 +6,7 @@
 #    By: Tessa <Tessa@student.codam.nl>               +#+                      #
 #                                                    +#+                       #
 #    Created: 2022/01/11 14:02:46 by Tessa         #+#    #+#                  #
-#    Updated: 2022/02/25 12:39:41 by tvan-der      ########   odam.nl          #
+#    Updated: 2022/03/10 17:21:51 by tvan-der      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,9 +18,7 @@ NAME =      fractol
 
 SRCS =      ./src/color.c \
 			./src/window.c \
-			./src/mandelbrot.c \
-			./src/julia.c \
-			./src/burningship.c \
+			./src/fractal.c \
 			./src/read_input.c \
 			./src/key_hook.c \
 			./src/mouse_hook.c \
@@ -34,7 +32,7 @@ INCLUDES =  ./libft \
 
 CC = 		gcc
 RM = 		rm -f
-CFLAGS = 	-Wall -Wextra -Werror -fsanitize=address -g
+CFLAGS = 	-Wall -Wextra -Werror
 MLXFLAGS = 	-framework OpenGl -framework AppKit -mtune=native -march=native -Ofast
 
 all:        $(NAME)
@@ -49,7 +47,7 @@ $(NAME):	$(OFILES) $(INCLUDES)
 
 %.o:        %.c
 			@echo "$(GREEN)Compiling:$(NORMAL)"
-			gcc -Ilibft -Imlx -c $< -o $@ -Wall -Werror -Wextra
+			gcc -Ilibft -Imlx -c $< -o $@ $(CFLAGS)
 			
 clean:
 			@echo "$(RED)Removing all object files...$(NORMAL)"
