@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   fractol.h                                          :+:    :+:            */
+/*   fractol_bonus.h                                    :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: Tessa <Tessa@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/01/12 09:26:01 by Tessa         #+#    #+#                 */
-/*   Updated: 2022/03/15 14:12:30 by tvan-der      ########   odam.nl         */
+/*   Updated: 2022/03/15 14:06:01 by tvan-der      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FRACTOL_H
-# define FRACTOL_H
+#ifndef FRACTOL_BONUS_H
+# define FRACTOL_BONUS_H
 
 # include "../mlx/mlx.h"
 # include "../libft/libft.h"
@@ -79,18 +79,23 @@ int			mandelbrot(t_complex complex);
 // Julia set
 int			julia(t_fractal *fractal, t_complex z);
 
+// Burning ship
+int			ship(t_complex complex);
+
 // Complex number
 double		absolute_complex(t_complex complex);
 t_complex	add_complex(t_complex x, t_complex y);
 t_complex	square_complex(t_complex x);
+t_complex	get_abs(t_complex x);
 
 // Key & mouse hooks
-int			key_hook(int key_hook, t_fractal *fractal);
+int			key_hook1(int key_hook, t_fractal *fractal);
+int			key_hook2(int key_hook, t_fractal *fractal);
 int			mouse_hook(int mousecode, int x, int y, t_fractal *fractal);
 int			ft_close(t_fractal *fractal);
 
 // Color
-int			color(int n);
+int			color(t_fractal *fractal, int n);
 int			create_rgb(int r, int g, int b);
 
 #endif

@@ -6,7 +6,7 @@
 #    By: tvan-der <tvan-der@student.codam.nl>         +#+                      #
 #                                                    +#+                       #
 #    Created: 2022/03/08 12:03:47 by tvan-der      #+#    #+#                  #
-#    Updated: 2022/03/10 17:22:40 by tvan-der      ########   odam.nl          #
+#    Updated: 2022/03/14 17:21:22 by tvan-der      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -55,9 +55,9 @@ SRCS	=	ft_strlcpy.c \
 			ft_lstadd_back.c \
 			ft_lstdelone.c \
 			ft_lstclear.c \
-			ft_printf/ft_printf.c \
-			ft_printf/ft_printf_char.c \
-			ft_printf/ft_printf_num.c
+			ft_printf.c \
+			ft_printf_char.c \
+			ft_printf_num.c
 
 OBJS	=	$(SRCS:.c=.o)
 LIBC	=	ar -rcs
@@ -72,7 +72,6 @@ $(NAME):	$(OBJS)
 
 clean:
 			${RM} *.o
-			${RM} ft_printf/*.o
 
 fclean:		clean
 			${RM} $(NAME)

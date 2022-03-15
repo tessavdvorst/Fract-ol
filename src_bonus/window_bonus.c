@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   window.c                                           :+:    :+:            */
+/*   window_bonus.c                                     :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: Tessa <Tessa@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/01/11 11:13:31 by Tessa         #+#    #+#                 */
-/*   Updated: 2022/03/15 14:13:09 by tvan-der      ########   odam.nl         */
+/*   Updated: 2022/03/15 14:04:31 by tvan-der      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../incl/fractol.h"
+#include "../incl/fractol_bonus.h"
 
 void	window_init(t_fractal *fractal)
 {
@@ -55,8 +55,10 @@ void	color_pixel(t_fractal *fractal, int x, int y)
 		iter = mandelbrot(complex);
 	else if (ft_ccmp(fractal->name, 'j') == 0)
 		iter = julia(fractal, complex);
+	else if (ft_ccmp(fractal->name, 's') == 0)
+		iter = ship(complex);
 	if (iter != MAX_ITERATIONS)
-		my_mlx_pixel_put(fractal, x, y, color(iter));
+		my_mlx_pixel_put(fractal, x, y, color(fractal, iter));
 	else
 		my_mlx_pixel_put(fractal, x, y, BLACK);
 }

@@ -1,27 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   key_hook.c                                         :+:    :+:            */
+/*   ft_printf_char.c                                   :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: tvan-der <tvan-der@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2022/02/08 14:18:27 by tvan-der      #+#    #+#                 */
-/*   Updated: 2022/03/15 13:42:44 by tvan-der      ########   odam.nl         */
+/*   Created: 2021/09/20 12:04:51 by tvan-der      #+#    #+#                 */
+/*   Updated: 2022/03/14 17:21:33 by tvan-der      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../incl/fractol.h"
+#include "libft.h"
 
-int	key_hook(int keycode, t_fractal *fractal)
+void	ft_printchar(char c, t_data *data)
 {
-	if (keycode == ESC)
-		ft_close(fractal);
-	return (0);
+	ft_putchar_fd(c, 1);
+	data->print_count++;
 }
 
-int	ft_close(t_fractal *fractal)
+void	ft_printstr(char *s, t_data *data)
 {
-	mlx_destroy_window(fractal->mlx, fractal->win);
-	exit(0);
-	return (0);
+	int	i;
+
+	i = 0;
+	if (s == NULL)
+		s = "(null)";
+	while (*s != '\0')
+	{
+		ft_printchar(*s, data);
+		s++;
+	}
 }

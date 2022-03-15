@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   utils.c                                            :+:    :+:            */
+/*   utils_bonus.c                                      :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: tvan-der <tvan-der@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/02/16 13:42:00 by tvan-der      #+#    #+#                 */
-/*   Updated: 2022/03/15 14:12:10 by tvan-der      ########   odam.nl         */
+/*   Updated: 2022/03/15 14:04:29 by tvan-der      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../incl/fractol.h"
+#include "../incl/fractol_bonus.h"
 
 t_complex	square_complex(t_complex x)
 {
@@ -36,6 +36,15 @@ double	absolute_complex(t_complex complex)
 
 	x = complex.re * complex.re + complex.im * complex.im;
 	return (x);
+}
+
+t_complex	get_abs(t_complex x)
+{
+	t_complex	z;
+
+	z.re = fabs(x.re);
+	z.im = fabs(x.im);
+	return (z);
 }
 
 void	my_mlx_pixel_put(t_fractal *fractal, int x, int y, int color)

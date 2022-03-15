@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   read_input.c                                       :+:    :+:            */
+/*   read_input_bonus.c                                 :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: tvan-der <tvan-der@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/02/09 12:25:26 by tvan-der      #+#    #+#                 */
-/*   Updated: 2022/03/15 14:46:19 by tvan-der      ########   odam.nl         */
+/*   Updated: 2022/03/15 14:47:11 by tvan-der      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../incl/fractol.h"
+#include "../incl/fractol_bonus.h"
 
 int	read_c(t_fractal *fractal, char *str, char c)
 {
