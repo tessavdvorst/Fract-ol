@@ -6,7 +6,7 @@
 #    By: Tessa <Tessa@student.codam.nl>               +#+                      #
 #                                                    +#+                       #
 #    Created: 2022/01/11 14:02:46 by Tessa         #+#    #+#                  #
-#    Updated: 2022/03/15 14:53:38 by tvan-der      ########   odam.nl          #
+#    Updated: 2022/03/15 15:07:10 by tvan-der      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -67,8 +67,7 @@ $(NAME):	$(OBJS) $(HEADER)
 			$(CC) -Ilibft -Imlx -c $< -o $@ $(CFLAGS)
 			
 bonus:
-			rm -f $(OFILES)
-			$(MAKE) WITH_BONUS=1 all
+			make WITH_BONUS=1 all
 
 clean:
 			@echo "$(RED)Removing all object files...$(NORMAL)"

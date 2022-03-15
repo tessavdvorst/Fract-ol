@@ -6,7 +6,7 @@
 /*   By: tvan-der <tvan-der@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/01/18 10:17:28 by tvan-der      #+#    #+#                 */
-/*   Updated: 2022/03/15 14:44:39 by tvan-der      ########   odam.nl         */
+/*   Updated: 2022/03/15 15:09:29 by tvan-der      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,8 @@ int	color(int n)
 	int	g;
 	int	b;
 
-	r = 0;
-	g = 10;
-	b = 0 + floor(n * 10);
+	r = 100;
+	g = 50;
+	b = 0 + floor(n * 750);
 	return (create_rgb(r, g, b));
 }
