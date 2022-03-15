@@ -6,7 +6,7 @@
 /*   By: Tessa <Tessa@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/01/12 09:26:01 by Tessa         #+#    #+#                 */
-/*   Updated: 2022/03/15 15:12:01 by tvan-der      ########   odam.nl         */
+/*   Updated: 2022/03/15 15:17:36 by tvan-der      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,11 +22,6 @@
 # define MAX_ITERATIONS 200
 # define BLACK 0x00000000
 
-# define KEY_UP 126
-# define KEY_DOWN 125
-# define KEY_RIGHT 124
-# define KEY_LEFT 123
-# define SPACE 49
 # define ESC 53
 # define WHEEL_UP 5
 # define WHEEL_DOWN 4
