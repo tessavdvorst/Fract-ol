@@ -6,7 +6,7 @@
 /*   By: Tessa <Tessa@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/01/12 09:26:01 by Tessa         #+#    #+#                 */
-/*   Updated: 2022/03/15 15:03:33 by tvan-der      ########   odam.nl         */
+/*   Updated: 2022/03/15 15:12:01 by tvan-der      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,6 @@
 # define HEIGTH 750
 # define MAX_ITERATIONS 200
 # define BLACK 0x00000000
-# define CONST_RE -0.4
-# define CONST_IM 0.6
 
 # define KEY_UP 126
 # define KEY_DOWN 125
