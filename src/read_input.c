@@ -6,7 +6,7 @@
 /*   By: tvan-der <tvan-der@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/02/09 12:25:26 by tvan-der      #+#    #+#                 */
-/*   Updated: 2022/03/15 14:46:19 by tvan-der      ########   odam.nl         */
+/*   Updated: 2023/05/22 21:40:19 by Tessa         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,11 @@ int	read_fractal(t_fractal *fractal, char *str)
 		fractal->julia_i = 0.0;
 		return (1);
 	}
+	else if (ft_strcmp(str, "ship") == 0)
+	{
+		fractal->name = 's';
+		return (1);
+	}
 	else
 	{
 		print_error();
@@ -61,12 +66,12 @@ int	info_init(t_fractal *fractal, char **str, int argc)
 	int	check;
 
 	check = 0;
-	fractal->color = 0;
+	fractal->color = 2;
 	if (argc > 1)
 		check = read_fractal(fractal, &str[1][0]);
 	if (argc > 2)
 	{
-		if (ft_ccmp(fractal->name, 'j') == 0)
+		if (fractal->name == 'j')
 		{
 			if (ft_strcmp(str[2], "0") != 0
 				&& (read_c(fractal, str[2], 'r') == 0))

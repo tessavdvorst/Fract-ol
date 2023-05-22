@@ -6,7 +6,7 @@
 #    By: tvan-der <tvan-der@student.codam.nl>         +#+                      #
 #                                                    +#+                       #
 #    Created: 2022/03/08 12:03:47 by tvan-der      #+#    #+#                  #
-#    Updated: 2022/03/14 17:21:22 by tvan-der      ########   odam.nl          #
+#    Updated: 2023/05/22 21:41:30 by Tessa         ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,6 @@ SRCS	=	ft_strlcpy.c \
 			ft_strlen.c	\
 			ft_strcmp.c	\
 			ft_strncmp.c \
-			ft_ccmp.c \
 			ft_isalpha.c \
 			ft_isascii.c \
 			ft_isdigit.c \

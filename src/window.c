@@ -6,7 +6,7 @@
 /*   By: Tessa <Tessa@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/01/11 11:13:31 by Tessa         #+#    #+#                 */
-/*   Updated: 2022/03/15 14:13:09 by tvan-der      ########   odam.nl         */
+/*   Updated: 2023/05/22 21:31:37 by Tessa         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,14 +26,14 @@ void	fractal_init(t_fractal *fractal)
 	fractal->move_x = 0;
 	fractal->move_y = 0;
 	fractal->zoom = 1;
-	if (ft_ccmp(fractal->name, 's') == 0)
+	if (fractal->name == 's')
 	{
 		fractal->offset_r = -2.4;
 		fractal->offset_i = -2.0;
 	}
 	else
 	{
-		if (ft_ccmp(fractal->name, 'm') == 0)
+		if (fractal->name == 'm')
 			fractal->offset_r = -2.5;
 		else
 			fractal->offset_r = -2.0;
@@ -51,12 +51,14 @@ void	color_pixel(t_fractal *fractal, int x, int y)
 			+ fractal->offset_r * fractal->zoom) + fractal->move_x;
 	complex.im = ((double)y * ((3.0 / HEIGTH) * fractal->zoom)
 			+ fractal->offset_i * fractal->zoom) + fractal->move_y;
-	if (ft_ccmp(fractal->name, 'm') == 0)
+	if (fractal->name == 'm')
 		iter = mandelbrot(complex);
-	else if (ft_ccmp(fractal->name, 'j') == 0)
+	else if (fractal->name == 'j')
 		iter = julia(fractal, complex);
+	else if (fractal->name == 's')
+		iter = ship(complex);
 	if (iter != MAX_ITERATIONS)
-		my_mlx_pixel_put(fractal, x, y, color(iter));
+		my_mlx_pixel_put(fractal, x, y, color(fractal, iter));
 	else
 		my_mlx_pixel_put(fractal, x, y, BLACK);
 }

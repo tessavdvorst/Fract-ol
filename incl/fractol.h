@@ -6,7 +6,7 @@
 /*   By: Tessa <Tessa@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/01/12 09:26:01 by Tessa         #+#    #+#                 */
-/*   Updated: 2022/03/15 15:17:36 by tvan-der      ########   odam.nl         */
+/*   Updated: 2023/05/22 21:27:25 by Tessa         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,11 @@
 # define MAX_ITERATIONS 200
 # define BLACK 0x00000000
 
+# define KEY_UP 126
+# define KEY_DOWN 125
+# define KEY_RIGHT 124
+# define KEY_LEFT 123
+# define SPACE 49
 # define ESC 53
 # define WHEEL_UP 5
 # define WHEEL_DOWN 4
@@ -72,18 +77,23 @@ int			mandelbrot(t_complex complex);
 // Julia set
 int			julia(t_fractal *fractal, t_complex z);
 
+// Burning ship
+int			ship(t_complex complex);
+
 // Complex number
 double		absolute_complex(t_complex complex);
 t_complex	add_complex(t_complex x, t_complex y);
 t_complex	square_complex(t_complex x);
+t_complex	get_abs(t_complex x);
 
 // Key & mouse hooks
-int			key_hook(int key_hook, t_fractal *fractal);
+int			key_hook1(int key_hook, t_fractal *fractal);
+int			key_hook2(int key_hook, t_fractal *fractal);
 int			mouse_hook(int mousecode, int x, int y, t_fractal *fractal);
 int			ft_close(t_fractal *fractal);
 
 // Color
-int			color(int n);
+int			color(t_fractal *fractal, int n);
 int			create_rgb(int r, int g, int b);
 
 #endif

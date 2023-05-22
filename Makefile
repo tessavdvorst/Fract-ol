@@ -6,88 +6,73 @@
 #    By: Tessa <Tessa@student.codam.nl>               +#+                      #
 #                                                    +#+                       #
 #    Created: 2022/01/11 14:02:46 by Tessa         #+#    #+#                  #
-#    Updated: 2022/03/15 15:07:10 by tvan-der      ########   odam.nl          #
+#    Updated: 2023/05/22 21:56:52 by Tessa         ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
-GREEN = 	\033[38;5;2m
-NORMAL = 	\033[38;5;255m
-RED = 		\033[38;5;1m
+GREEN = 			\033[38;5;2m
+NORMAL = 			\033[38;5;255m
+RED = 				\033[38;5;1m
 
-NAME =      	fractol	
-VPATH = ./src ./src_bonus
+NAME =				fractol
+VPATH =				./src
+OBJS_DIR =			objs
 
-SRCS =      	color.c \
-				window.c \
-				fractal.c \
-				read_input.c \
-				key_hook.c \
-				mouse_hook.c \
-				utils.c \
-				main.c
+SRCS =				color.c \
+					window.c \
+					fractal.c \
+					read_input.c \
+					key_hook.c \
+					mouse_hook.c \
+					utils.c \
+					main.c
 
-BONUS =			color_bonus.c \
-				window_bonus.c \
-				fractal_bonus.c \
-				read_input_bonus.c \
-				key_hook_bonus.c \
-				mouse_hook_bonus.c \
-				utils_bonus.c \
-				main_bonus.c
+OBJS =    			$(addprefix $(OBJS_DIR)/,$(SRCS:.c=.o))
 
-OFILES =    $(SRCS:.c=.o)
-BFILES =	$(BONUS:.c=.o)
+HEADER =  			./libft \
+            		./mlx
 
-HEADER =  	./libft \
-            ./mlx
+CC = 				gcc
+RM = 				rm -rf
+CFLAGS = 			-Wall -Wextra -Werror
+MLXFLAGS = 			-framework OpenGl -framework AppKit -mtune=native -march=native -Ofast
 
-CC = 		gcc
-RM = 		rm -f
-CFLAGS = 	-Wall -Wextra -Werror
-MLXFLAGS = 	-framework OpenGl -framework AppKit -mtune=native -march=native -Ofast
+all:        		$(NAME)
 
-ifdef WITH_BONUS
-OBJS = $(BFILES)
-else
-OBJS = $(OFILES)
-endif
+$(NAME):			$(OBJS) $(HEADER)
+					make -C libft/
+					cp libft/libft.a .
+					make -C mlx/
+					cp mlx/libmlx.a .
+					$(CC) -Lmlx -lmlx -Llibft -lft -o $(NAME) $(OBJS) $(CFLAGS) $(MLXFLAGS)
+					@echo "$(GREEN)Successfully compiled!$(NORMAL)"
 
-all:        $(NAME)
+$(OBJS_DIR)/%.o:	%.c | $(OBJS_DIR)
+					@echo "$(GREEN)Compiling:$(NORMAL)"
+					$(CC) -Ilibft -Imlx -c $< -o $@ $(CFLAGS)
 
-$(NAME):	$(OBJS) $(HEADER)
-			make -C libft/
-			cp libft/libft.a .
-			make -C mlx/
-			cp mlx/libmlx.a .
-			$(CC) -Lmlx -lmlx -Llibft -lft -o $(NAME) $(OBJS) $(CFLAGS) $(MLXFLAGS)
-			@echo "$(GREEN)Successfully compiled!$(NORMAL)"
-
-%.o:        %.c
-			@echo "$(GREEN)Compiling:$(NORMAL)"
-			$(CC) -Ilibft -Imlx -c $< -o $@ $(CFLAGS)
-			
-bonus:
-			make WITH_BONUS=1 all
+$(OBJS_DIR):
+					@mkdir -p $@
 
 clean:
-			@echo "$(RED)Removing all object files...$(NORMAL)"
-			$(RM) $(OFILES) $(BFILES)
-			make clean -C libft/
-			make clean -C mlx/
-			@echo "$(GREEN)Succesfully removed all object files!$(NORMAL)"
+					@echo "$(RED)Removing all object files...$(NORMAL)"
+					$(RM) $(OBJS_DIR)
+					make clean -C libft/
+					make clean -C mlx/
+					@echo "$(GREEN)Succesfully removed all object files!$(NORMAL)"
 
-fclean:		clean
-			@echo "$(RED)Removing libraries...$(NORMAL)"
-			$(RM) mlx/libmlx.a
-			$(RM) libmlx.a
-			$(RM) libft/libft.a
-			$(RM) libft.a
-			$(RM) $(NAME)
-			@echo "$(GREEN)Successfully removed libraries!$(NORMAL)"
+fclean:				clean
+					@echo "$(RED)Removing libraries...$(NORMAL)"
+					$(RM) mlx/libmlx.a
+					$(RM) libmlx.a
+					$(RM) libft/libft.a
+					$(RM) libft.a
+					$(RM) $(NAME)
+					@echo "$(GREEN)Successfully removed libraries!$(NORMAL)"
 
-re:        	fclean all
+re:        			fclean all
 
-.PHONY: 	all clean fclean re bonus
+.PHONY: 			all clean fclean re bonus
 
 
 
