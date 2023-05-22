@@ -48,8 +48,8 @@ This will create an executable file called fractol in the same directory.
 ## Usage
 Once you have compiled the program, you can run it by typing the following command:
 
-`././fractol [fractalname] [julia-re] [julia-im]`
+`./fractol [fractalname] [julia-re] [julia-im]`
 
-** fractalname: (mandatory) ** mandelbrot/julia/ship
+**fractalname: (mandatory)** mandelbrot/julia/ship
 
-** julia-re & julia-im: (optional) ** real and imaginary coordinates (only for julia set), e.g. -0.4 and 0.6
+**julia-re & julia-im: (optional)** real and imaginary coordinates (only for julia set), e.g. -0.4 and 0.6
